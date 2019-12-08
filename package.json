@@ -1,0 +1,33 @@
+{
+  "name": "azim-math-game",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/bin/greeting.js",
+  "bin": {
+    "say-hello": "dist/bin/greeting.js",
+    "sum-game": "dist/bin/sum.js",
+    "subtraction-game": "dist/bin/subtraction.js",
+    "multiply-game": "dist/bin/multiply.js",
+    "division-game": "dist/bin/division.js"
+  },
+  "scripts": {
+    "build": "npx babel src --out-dir dist --source-maps inline",
+    "babel-greet": "npx babel-node src/bin/greeting.js",
+    "babel-sum": "npx babel-node src/bin/sum.js",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Azim",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.5",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
