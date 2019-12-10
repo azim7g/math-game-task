@@ -6,20 +6,29 @@ export const greeting = () => {
   console.log(`Привет, ${name} !`);
 };
 
+const questionGeneration = (quiz) => {
+  const questionForUser = 'Сколько будет';
+  const operandOne = Math.floor(Math.random() * 100);
+  const operandTwo = Math.floor(Math.random() * 100);
+  const userAnswer = readlineSync.question(`${questionForUser} ${operandOne} ${quiz.operator} ${operandTwo} ?\n`);
+  return [userAnswer, operandOne, operandTwo];
+};
+
+
 export const run = (questions) => {
   greeting();
+  let numberOfQuestion = readlineSync.question('Сколько примеров хотите решить ?\n');
+
   const iter = (quiz) => {
-    if (quiz.length <= 0) {
+    if (numberOfQuestion <= 0) {
       console.log('Поздравляем ! Вы прошли игру !');
       return;
     }
-    const [head, ...tail] = quiz;
-    const questionForUser = 'Сколько будет';
-    const operandOne = Math.floor(Math.random() * 100);
-    const operandTwo = Math.floor(Math.random() * 100);
-    const userAnswer = readlineSync.question(`${questionForUser} ${operandOne} ${head.operator} ${operandTwo} ?\n`);
+
+    numberOfQuestion -= 1;
     let correctAnswer;
-    switch (head.operator) {
+    const [userAnswer, operandOne, operandTwo] = questionGeneration(quiz);
+    switch (quiz.operator) {
       case '+':
         correctAnswer = `${operandOne + operandTwo}`;
         break;
@@ -34,11 +43,12 @@ export const run = (questions) => {
         break;
       default:
     }
+
     if (userAnswer !== correctAnswer) {
       console.log('Увы ! Ответ неверный. Вы проиграли');
       return;
     }
-    iter(tail);
+    iter(quiz);
   };
 
   iter(questions);

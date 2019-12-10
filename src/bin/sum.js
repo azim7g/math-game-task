@@ -1,16 +1,6 @@
 #!/usr/bin/env node
 import { run } from '..';
 
-const sumQuiz = [
-  {
-    operator: '+',
-  },
-  {
-    operator: '+',
-  },
-  {
-    operator: '+',
-  },
-];
+const sumQuiz = { operator: '+' };
 
 run(sumQuiz);
